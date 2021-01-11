@@ -14,14 +14,14 @@ suite('Functional Tests', () => {
       .request(server)
       .post('/api/translate')
       .send({
-        test: 'Mangoes are my favorite fruit.',
+        text: 'Mangoes are my favorite fruit.',
         locale: 'american-to-british',
       })
       .end(function (err, res) {
         assert.equal(res.status, 200);
         assert.isObject(res.body);
         assert.deepEqual(res.body, {
-          test: 'Mangoes are my favorite fruit.',
+          text: 'Mangoes are my favorite fruit.',
           translation:
             'Mangoes are my <span class="highlight">favourite</span> fruit.',
         });
@@ -33,7 +33,7 @@ suite('Functional Tests', () => {
       .request(server)
       .post('/api/translate')
       .send({
-        test: 'Mangoes are my favorite fruit.',
+        text: 'Mangoes are my favorite fruit.',
         locale: 'japanese-to-british',
       })
       .end(function (err, res) {
@@ -66,7 +66,7 @@ suite('Functional Tests', () => {
       .request(server)
       .post('/api/translate')
       .send({
-        test: 'Mangoes are my favorite fruit.',
+        text: 'Mangoes are my favorite fruit.',
       })
       .end(function (err, res) {
         assert.equal(res.status, 200);
@@ -82,7 +82,7 @@ suite('Functional Tests', () => {
       .request(server)
       .post('/api/translate')
       .send({
-        test: '',
+        text: '',
         locale: 'american-to-british',
       })
       .end(function (err, res) {
@@ -99,7 +99,7 @@ suite('Functional Tests', () => {
       .request(server)
       .post('/api/translate')
       .send({
-        test: 'Mangoes are my favourite fruit.',
+        text: 'Mangoes are my favourite fruit.',
         locale: 'american-to-british',
       })
       .end(function (err, res) {
