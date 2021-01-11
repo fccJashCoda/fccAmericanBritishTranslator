@@ -9,8 +9,14 @@ class Translator {
   //     "text": "The car boot sale at Boxted Airfield was called off.",
   //     "translation": "The <span class=\"highlight\">swap meet</span> at Boxted Airfield was called off."
   // }
-  translateToAmericanEnglish(inputStr) {}
-  translateToBritishEnglish(intputStr) {}
+  // pay attention to case
+  // translator will need to parse strings for : . in examples using time.
+  translateToAmericanEnglish(inputStr) {
+    return { text: 'input', translation: 'output' };
+  }
+  translateToBritishEnglish(intputStr) {
+    return { text: 'input', translation: 'output' };
+  }
 }
 
 module.exports = Translator;

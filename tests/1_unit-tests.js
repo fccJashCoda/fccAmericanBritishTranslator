@@ -208,7 +208,7 @@ suite('Unit Tests', () => {
   suite('Highlight translations', function () {
     test('Highlight translation in Mangoes are my favorite fruit.', function (done) {
       const text = 'Mangoes are my favorite fruit.';
-      assert.includes(
+      assert.include(
         translator.translateToBritishEnglish(text).translation,
         '<span class="highlight">favourite<span>'
       );
@@ -216,7 +216,7 @@ suite('Unit Tests', () => {
     });
     test('Highlight translation in I ate yogurt for breakfast.', function (done) {
       const text = 'I ate yogurt for breakfast.';
-      assert.includes(
+      assert.include(
         translator.translateToBritishEnglish(text).translation,
         '<span class="highlight">yoghurt<span>'
       );
@@ -224,7 +224,7 @@ suite('Unit Tests', () => {
     });
     test('Highlight translation in We watched the footie match for a while.', function (done) {
       const text = 'We watched the footie match for a while.';
-      assert.includes(
+      assert.include(
         translator.translateToAmericanEnglish(text).translation,
         '<span class="highlight">soccer<span>'
       );
@@ -232,7 +232,7 @@ suite('Unit Tests', () => {
     });
     test('Highlight translation in Paracetamol takes up to an hour to work.', function (done) {
       const text = 'Paracetamol takes up to an hour to work.';
-      assert.includes(
+      assert.include(
         translator.translateToAmericanEnglish(text).translation,
         '<span class="highlight">Tylenol<span>'
       );
