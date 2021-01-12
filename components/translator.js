@@ -16,15 +16,15 @@ class Translator {
   translateTime(input, language = 'toBritish') {
     const regex =
       language === 'toBritish'
-        ? /(?<=^|[ ])\d{1,2}:\d{2}(?=\s|.|,)/
-        : /(?<=^|[ ])\d{1,2}\.\d{2}(?=\s|.|,)/;
+        ? /(?<=^|[ ])\d{1,2}:\d{2}(?=\s|\.|,)/
+        : /(?<=^|[ ])\d{1,2}\.\d{2}(?=\s|\.|,)/;
     const target = language === 'toBritish' ? ':' : '.';
     const value = language === 'toBritish' ? '.' : ':';
 
     if (regex.test(input)) {
       const match = input.match(regex)[0];
       const newTime = match.replace(target, value);
-      return input.replace(match, `<span class="highlight">${newTime}<span>`);
+      return input.replace(match, `<span class="highlight">${newTime}</span>`);
     }
     return null;
   }
@@ -54,34 +54,18 @@ class Translator {
     [americanOnly, americanToBritishSpelling, americanToBritishTitles].forEach(
       (dictionary) =>
         Object.keys(dictionary).forEach((key) => {
-          let index = string.indexOf(key);
-          if (index !== -1) {
-            const subString = dictionary[key];
+          const boundary = `(?<=^|[ ])${key}(?=\\s|\\.|,)`;
+          const regex = new RegExp(boundary, 'gi');
+
+          if (regex.test(translation)) {
             wasTranslated = true;
-            translation =
-              translation.slice(0, index) +
-              '<span class="highlight">' +
-              subString +
-              '</span>' +
-              translation.slice(index + subString.length);
+            translation = translation.replace(
+              regex,
+              '<span class="highlight">' + dictionary[key] + '</span>'
+            );
           }
         })
     );
-
-    Object.keys(britishOnly).forEach((key) => {
-      let index = string.indexOf(britishOnly[key]);
-      if (index !== -1) {
-        const subString = key;
-        wasTranslated = true;
-        translation =
-          translation.slice(0, index) +
-          '<span class="highlight">' +
-          subString +
-          '</span>' +
-          translation.slice(index + subString.length);
-      }
-    });
-
     // check if the key is a substring of inputStr
     // if so, replace the substr with the translation surrounded by a span tag
     // make wasTranslated true

@@ -22,7 +22,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text: 'I ate yogurt for breakfast.',
         translation:
-          'I ate <span class="highlight">yoghurt<span> for breakfast.',
+          'I ate <span class="highlight">yoghurt</span> for breakfast.',
       });
       done();
     });
@@ -32,7 +32,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text: "We had a party at my friend's condo.",
         translation:
-          'We had a party at my friend\'s <span class="highlight">flat<span>.',
+          'We had a party at my friend\'s <span class="highlight">flat</span>.',
       });
       done();
     });
@@ -42,7 +42,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
         translation:
-          'Can you toss this in the <span class="highlight">bin<span> for me?',
+          'Can you toss this in the <span class="highlight">bin</span> for me?',
       });
       done();
     });
@@ -51,7 +51,7 @@ suite('Unit Tests', () => {
       assert.isObject(translator.translateToBritishEnglish(text));
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
-        translation: 'The <span class="highlight">car park<span> was full.',
+        translation: 'The <span class="highlight">car park</span> was full.',
       });
       done();
     });
@@ -61,7 +61,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
         translation:
-          'Like a high tech <span class="highlight">Heath Robinson device<span>.',
+          'Like a high tech <span class="highlight">Heath Robinson device</span>.',
       });
       done();
     });
@@ -71,7 +71,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
         translation:
-          'To <span class="highlight">bunk off<span> means to skip class or work.',
+          'To <span class="highlight">bunk off</span> means to skip class or work.',
       });
       done();
     });
@@ -81,7 +81,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
         translation:
-          'No <span class="highlight">Mr<span> Bond, I expect you to die.',
+          'No <span class="highlight">Mr</span> Bond, I expect you to die.',
       });
       done();
     });
@@ -90,7 +90,8 @@ suite('Unit Tests', () => {
       assert.isObject(translator.translateToBritishEnglish(text));
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
-        translation: '<span class="highlight">Dr<span> Grosh will see you now.',
+        translation:
+          '<span class="highlight">Dr</span> Grosh will see you now.',
       });
       done();
     });
@@ -99,7 +100,7 @@ suite('Unit Tests', () => {
       assert.isObject(translator.translateToBritishEnglish(text));
       assert.deepEqual(translator.translateToBritishEnglish(text), {
         text,
-        translation: 'Lunch is at <span class="highlight">12.15<span> today.',
+        translation: 'Lunch is at <span class="highlight">12.15</span> today.',
       });
       done();
     });
@@ -111,7 +112,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'We watched the <span class="highlight">soccer<span> match for a while.',
+          'We watched the <span class="highlight">soccer</span> match for a while.',
       });
       done();
     });
@@ -121,7 +122,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          '<span class="highlight">Tylenol<span> takes up to an hour to work.',
+          '<span class="highlight">Tylenol</span> takes up to an hour to work.',
       });
       done();
     });
@@ -131,7 +132,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'First, <span class="highlight">caramelize<span> the onions.',
+          'First, <span class="highlight">caramelize</span> the onions.',
       });
       done();
     });
@@ -141,7 +142,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'I spent the <span class="highlight">public holiday<span> at the <span class="highlight">carnival<span>.',
+          'I spent the <span class="highlight">public holiday</span> at the <span class="highlight">carnival</span>.',
       });
       done();
     });
@@ -151,7 +152,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'I had a <span class="highlight">cookie<span> then went to the <span class="highlight">fish-and-chip shop<span>.',
+          'I had a <span class="highlight">cookie</span> then went to the <span class="highlight">fish-and-chip shop</span>.',
       });
       done();
     });
@@ -161,7 +162,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'I\'ve just got <span class="highlight">odds and ends<span> in my <span class="highlight">fanny pack<span>.',
+          'I\'ve just got <span class="highlight">odds and ends</span> in my <span class="highlight">fanny pack</span>.',
       });
       done();
     });
@@ -171,7 +172,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'The <span class="highlight">swap meet<span> at Boxted Airfield was called off.',
+          'The <span class="highlight">swap meet</span> at Boxted Airfield was called off.',
       });
       done();
     });
@@ -180,7 +181,8 @@ suite('Unit Tests', () => {
       assert.isObject(translator.translateToAmericanEnglish(text));
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
-        translation: 'Have you met <span class="highlight">Mrs.<span> Kalyani?',
+        translation:
+          'Have you met <span class="highlight">Mrs.</span> Kalyani?',
       });
       done();
     });
@@ -190,7 +192,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          '<span class="highlight">Prof.<span> Joyner of King\'s College, London.',
+          '<span class="highlight">Prof.</span> Joyner of King\'s College, London.',
       });
       done();
     });
@@ -200,7 +202,7 @@ suite('Unit Tests', () => {
       assert.deepEqual(translator.translateToAmericanEnglish(text), {
         text,
         translation:
-          'Tea time is usually around 4 or <span class="highlight">4:30<span>.',
+          'Tea time is usually around 4 or <span class="highlight">4:30</span>.',
       });
       done();
     });
@@ -210,7 +212,7 @@ suite('Unit Tests', () => {
       const text = 'Mangoes are my favorite fruit.';
       assert.include(
         translator.translateToBritishEnglish(text).translation,
-        '<span class="highlight">favourite<span>'
+        '<span class="highlight">favourite</span>'
       );
       done();
     });
@@ -218,7 +220,7 @@ suite('Unit Tests', () => {
       const text = 'I ate yogurt for breakfast.';
       assert.include(
         translator.translateToBritishEnglish(text).translation,
-        '<span class="highlight">yoghurt<span>'
+        '<span class="highlight">yoghurt</span>'
       );
       done();
     });
@@ -226,7 +228,7 @@ suite('Unit Tests', () => {
       const text = 'We watched the footie match for a while.';
       assert.include(
         translator.translateToAmericanEnglish(text).translation,
-        '<span class="highlight">soccer<span>'
+        '<span class="highlight">soccer</span>'
       );
       done();
     });
@@ -234,7 +236,7 @@ suite('Unit Tests', () => {
       const text = 'Paracetamol takes up to an hour to work.';
       assert.include(
         translator.translateToAmericanEnglish(text).translation,
-        '<span class="highlight">Tylenol<span>'
+        '<span class="highlight">Tylenol</span>'
       );
       done();
     });
