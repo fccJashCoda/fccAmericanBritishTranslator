@@ -25,8 +25,6 @@ module.exports = function (app) {
       response = { error: 'Invalid value for locale field' };
     }
 
-    console.log(response);
-
     res.json(response);
   });
 };
