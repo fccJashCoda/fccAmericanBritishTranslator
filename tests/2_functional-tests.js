@@ -6,7 +6,6 @@ const server = require('../server.js');
 chai.use(chaiHttp);
 
 const Translator = require('../components/translator.js');
-const translator = new Translator();
 
 suite('Functional Tests', () => {
   test('Translation with text and locale fields: POST request to /api/translate', function (done) {
@@ -106,7 +105,7 @@ suite('Functional Tests', () => {
         assert.equal(res.status, 200);
         assert.isObject(res.body);
         assert.deepEqual(res.body, {
-          test: 'Mangoes are my favourite fruit.',
+          text: 'Mangoes are my favourite fruit.',
           translation: 'Everything looks good to me!',
         });
         done();
