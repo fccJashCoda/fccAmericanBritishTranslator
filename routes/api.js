@@ -16,12 +16,16 @@ module.exports = function (app) {
     let response;
 
     if (req.body.locale === 'american-to-british') {
-      response = translator.translateToBritishEnglish(req.body.text);
+      response = translator.translate(req.body.text, 'en-gb');
+      // response = translator.translateToBritishEnglish(req.body.text);
     } else if (req.body.locale === 'british-to-american') {
-      respones = translator.translateToAmericanEnglish(req.body.text);
+      respones = translator.translate(req.body.text, 'en-us');
+      // respones = translator.translateToAmericanEnglish(req.body.text);
     } else {
       response = { error: 'Invalid value for locale field' };
     }
+
+    console.log(response);
 
     res.json(response);
   });

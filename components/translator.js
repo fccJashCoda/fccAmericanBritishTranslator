@@ -13,13 +13,13 @@ class Translator {
   // translator will need to parse strings for : . in examples using time.
   // translator will send back a message if the output is the same as the input
 
-  translateTime(input, language = 'toBritish') {
+  translateTime(input, language = 'en-gb') {
     const regex =
-      language === 'toBritish'
+      language === 'en-gb'
         ? /(?<=^|[ ])\d{1,2}:\d{2}(?=\s|\.|,)/
         : /(?<=^|[ ])\d{1,2}\.\d{2}(?=\s|\.|,)/;
-    const target = language === 'toBritish' ? ':' : '.';
-    const value = language === 'toBritish' ? '.' : ':';
+    const target = language === 'en-gb' ? ':' : '.';
+    const value = language === 'en-gb' ? '.' : ':';
 
     if (regex.test(input)) {
       const match = input.match(regex)[0];
@@ -29,49 +29,121 @@ class Translator {
     return null;
   }
 
-  translateToAmericanEnglish(inputStr) {
-    let translation;
-    let wasTranslated = false;
-
-    if (!wasTranslated) {
-      return { text: inputStr, translation: 'Everything looks good to me!' };
-    }
-    return { text: inputStr, translation: 'output' };
+  capitalizeTitle(title) {
+    return title[0].toUpperCase() + title.slice(1);
   }
-  translateToBritishEnglish(inputStr) {
-    const string = inputStr.toLowerCase();
-    let translation = inputStr;
-    let wasTranslated = false;
 
-    // check if the string contains time
-    const handleTime = this.translateTime(translation);
-    if (handleTime) {
-      wasTranslated = true;
-      translation = handleTime;
-    }
+  capitalizeTranslation(string) {
+    return string[0].toUpperCase() + string.slice(1);
+  }
 
-    // get the object keys from americanOnly, americanToBritishSpelling, americanToBritishTitles
+  translateToAmericanEnglish(inputStr) {
+    let input = inputStr;
     [americanOnly, americanToBritishSpelling, americanToBritishTitles].forEach(
-      (dictionary) =>
+      (dictionary, i) =>
         Object.keys(dictionary).forEach((key) => {
           const boundary = `(?<=^|[ ])${key}(?=\\s|\\.|,)`;
           const regex = new RegExp(boundary, 'gi');
 
-          if (regex.test(translation)) {
-            wasTranslated = true;
-            translation = translation.replace(
+          if (regex.test(input)) {
+            let replacement = dictionary[key];
+            if (i === 2) {
+              replacement = this.capitalizeTitle(replacement);
+            }
+            this.wasTranslated = true;
+            input = input.replace(
               regex,
-              '<span class="highlight">' + dictionary[key] + '</span>'
+              '<span class="highlight">' + replacement + '</span>'
             );
           }
         })
     );
-    // check if the key is a substring of inputStr
-    // if so, replace the substr with the translation surrounded by a span tag
-    // make wasTranslated true
-    // check if the substr appears multiple times
 
-    if (!wasTranslated) {
+    return input;
+  }
+
+  translateToBritishEnglish(inputStr) {
+    let input = inputStr;
+    [americanOnly, americanToBritishSpelling, americanToBritishTitles].forEach(
+      (dictionary, i) =>
+        Object.keys(dictionary).forEach((key) => {
+          const boundary = `(?<=^|[ ])${key}(?=\\s|\\.|,)`;
+          const regex = new RegExp(boundary, 'gi');
+
+          if (regex.test(input)) {
+            let replacement = dictionary[key];
+            if (i === 2) {
+              replacement = this.capitalizeTitle(replacement);
+            }
+            this.wasTranslated = true;
+            input = input.replace(
+              regex,
+              '<span class="highlight">' + replacement + '</span>'
+            );
+          }
+        })
+    );
+
+    return input;
+  }
+  // translateToBritishEnglish(inputStr) {
+  //   let translation = inputStr;
+  //   let wasTranslated = false;
+
+  //   // check if the string contains time
+  //   const handleTime = this.translateTime(translation);
+  //   if (handleTime) {
+  //     wasTranslated = true;
+  //     translation = handleTime;
+  //   }
+
+  //   // get the object keys from americanOnly, americanToBritishSpelling, americanToBritishTitles
+  //   [americanOnly, americanToBritishSpelling, americanToBritishTitles].forEach(
+  //     (dictionary, i) =>
+  //       Object.keys(dictionary).forEach((key) => {
+  //         const boundary = `(?<=^|[ ])${key}(?=\\s|\\.|,)`;
+  //         const regex = new RegExp(boundary, 'gi');
+
+  //         // check if the key is a substring of inputStr
+  //         if (regex.test(translation)) {
+  //           let replacement = dictionary[key];
+  //           if (i === 2) {
+  //             replacement = this.capitalizeTitle(replacement);
+  //           }
+  //           // make wasTranslated true
+  //           wasTranslated = true;
+  //           // if so, replace the substr with the translation surrounded by a span tag
+  //           translation = translation.replace(
+  //             regex,
+  //             '<span class="highlight">' + replacement + '</span>'
+  //           );
+  //         }
+  //       })
+  //   );
+
+  //   if (!wasTranslated) {
+  //     return { text: inputStr, translation: 'Everything looks good to me!' };
+  //   }
+  //   return { text: inputStr, translation };
+  // }
+
+  translate(inputStr, language = 'en-gb') {
+    let translation = inputStr;
+    this.wasTranslated = false;
+
+    const handleTime = this.translateTime(translation, language);
+    if (handleTime) {
+      this.wasTranslated = true;
+      translation = handleTime;
+    }
+
+    if (language === 'en-gb') {
+      translation = this.translateToBritishEnglish(translation);
+    } else if (language === 'en-us') {
+      translation = this.translateToAmericanEnglish(translation);
+    }
+
+    if (!this.wasTranslated) {
       return { text: inputStr, translation: 'Everything looks good to me!' };
     }
     return { text: inputStr, translation };

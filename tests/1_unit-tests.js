@@ -8,8 +8,8 @@ suite('Unit Tests', () => {
   suite('American to British English', function () {
     test('Translate Mangoes are my favorite fruit. to British English', function (done) {
       const text = 'Mangoes are my favorite fruit.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text: 'Mangoes are my favorite fruit.',
         translation:
           'Mangoes are my <span class="highlight">favourite</span> fruit.',
@@ -18,8 +18,8 @@ suite('Unit Tests', () => {
     });
     test('Translate I ate yogurt for breakfast. to British English', function (done) {
       const text = 'I ate yogurt for breakfast.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text: 'I ate yogurt for breakfast.',
         translation:
           'I ate <span class="highlight">yoghurt</span> for breakfast.',
@@ -28,8 +28,8 @@ suite('Unit Tests', () => {
     });
     test("Translate We had a party at my friend's condo. to British English", function (done) {
       const text = "We had a party at my friend's condo.";
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text: "We had a party at my friend's condo.",
         translation:
           'We had a party at my friend\'s <span class="highlight">flat</span>.',
@@ -38,8 +38,8 @@ suite('Unit Tests', () => {
     });
     test('Translate Can you toss this in the trashcan for me? to British English', function (done) {
       const text = 'Can you toss this in the trashcan for me?';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation:
           'Can you toss this in the <span class="highlight">bin</span> for me?',
@@ -48,8 +48,8 @@ suite('Unit Tests', () => {
     });
     test('Translate The parking lot was full. to British English', function (done) {
       const text = 'The parking lot was full.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation: 'The <span class="highlight">car park</span> was full.',
       });
@@ -57,8 +57,8 @@ suite('Unit Tests', () => {
     });
     test('Translate Like a high tech Rube Goldberg machine. to British English', function (done) {
       const text = 'Like a high tech Rube Goldberg machine.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation:
           'Like a high tech <span class="highlight">Heath Robinson device</span>.',
@@ -67,8 +67,8 @@ suite('Unit Tests', () => {
     });
     test('Translate To play hooky means to skip class or work. to British English', function (done) {
       const text = 'To play hooky means to skip class or work.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation:
           'To <span class="highlight">bunk off</span> means to skip class or work.',
@@ -77,8 +77,8 @@ suite('Unit Tests', () => {
     });
     test('Translate No Mr. Bond, I expect you to die. to British English', function (done) {
       const text = 'No Mr. Bond, I expect you to die.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation:
           'No <span class="highlight">Mr</span> Bond, I expect you to die.',
@@ -87,8 +87,8 @@ suite('Unit Tests', () => {
     });
     test('Translate Dr. Grosh will see you now. to British English', function (done) {
       const text = 'Dr. Grosh will see you now.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation:
           '<span class="highlight">Dr</span> Grosh will see you now.',
@@ -97,8 +97,8 @@ suite('Unit Tests', () => {
     });
     test('Translate Lunch is at 12:15 today. to British English', function (done) {
       const text = 'Lunch is at 12:15 today.';
-      assert.isObject(translator.translateToBritishEnglish(text));
-      assert.deepEqual(translator.translateToBritishEnglish(text), {
+      assert.isObject(translator.translate(text, 'en-gb'));
+      assert.deepEqual(translator.translate(text, 'en-gb'), {
         text,
         translation: 'Lunch is at <span class="highlight">12.15</span> today.',
       });
@@ -211,7 +211,7 @@ suite('Unit Tests', () => {
     test('Highlight translation in Mangoes are my favorite fruit.', function (done) {
       const text = 'Mangoes are my favorite fruit.';
       assert.include(
-        translator.translateToBritishEnglish(text).translation,
+        translator.translate(text, 'en-gb').translation,
         '<span class="highlight">favourite</span>'
       );
       done();
@@ -219,7 +219,7 @@ suite('Unit Tests', () => {
     test('Highlight translation in I ate yogurt for breakfast.', function (done) {
       const text = 'I ate yogurt for breakfast.';
       assert.include(
-        translator.translateToBritishEnglish(text).translation,
+        translator.translate(text, 'en-gb').translation,
         '<span class="highlight">yoghurt</span>'
       );
       done();
