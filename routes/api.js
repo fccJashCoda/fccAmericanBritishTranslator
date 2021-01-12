@@ -17,10 +17,8 @@ module.exports = function (app) {
 
     if (req.body.locale === 'american-to-british') {
       response = translator.translate(req.body.text, 'en-gb');
-      // response = translator.translateToBritishEnglish(req.body.text);
     } else if (req.body.locale === 'british-to-american') {
-      respones = translator.translate(req.body.text, 'en-us');
-      // respones = translator.translateToAmericanEnglish(req.body.text);
+      response = translator.translate(req.body.text, 'en-us');
     } else {
       response = { error: 'Invalid value for locale field' };
     }
